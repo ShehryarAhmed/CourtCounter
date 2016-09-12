@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/profileimage"
+    tools:context="com.example.android.businessprofile.MainActivity"
+
+    android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="280dp"
+    android:id="@+id/nametextview"
+    android:orientation="vertical"
+
+    >
+
+    <TextView
+        android:id="@+id/nameview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shehryar Ahmed Khan"
+        android:textColor="#09042d"
+        android:textSize="24sp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:background="?android:attr/selectableItemBackground"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:text="Learning Android Development" />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nametexstview"
+        android:paddingTop="20dp"
+        android:orientation="horizontal"
+        android:background="?android:attr/selectableItemBackground">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:src="@mipmap/ic_settings_phone_white_24dp"
+            />
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:text="+92-315-8704640"
+            android:textColor="#09042d"
+            android:textSize="24sp"
+            android:gravity="center_horizontal"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:orientation="horizontal"
+        android:background="?android:attr/selectableItemBackground">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:src="@mipmap/ic_room_white_24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:text="Nazimabad,Karachi,Pakistan"
+        android:textColor="#09042d"
+        android:textSize="21sp"
+        android:gravity="center_horizontal"
+        />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:orientation="horizontal"
+        android:background="?android:attr/selectableItemBackground">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:src="@mipmap/ic_search_white_24dp"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:autoLink="web"
+            android:textColor="#09042d"
+            android:textSize="21sp"
+            android:text="@string/github"
+            />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="05dp"
+        android:autoLink="web"
+        android:textColor="#09042d"
+        android:textSize="21sp"
+        android:text="@string/Gmail"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="05dp"
+        android:autoLink="web"
+        android:textColor="#09042d"
+        android:textSize="21sp"
+        android:text="@string/facebook"
+        />
+</LinearLayout>
+    </LinearLayout>
+</LinearLayout>
