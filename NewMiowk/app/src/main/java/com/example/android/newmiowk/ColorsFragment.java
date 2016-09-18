@@ -28,10 +28,10 @@ public class ColorsFragment extends Fragment {
         public void onAudioFocusChange(int focusChange) {
             if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
                     focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                // The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio focus for a
-                // short amount of time. The AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK case means that
-                // our app is allowed to continue playing sound but at a lower volume. We'll treat
-                // both cases the same way because our app is playing short sound files.
+                    // The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio focus for a
+                    // short amount of time. The AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK case means that
+                    // our app is allowed to continue playing sound but at a lower volume. We'll treat
+                    // both cases the same way because our app is playing short sound files.
 
                 // Pause playback and reset player to the start of the file. That way, we can
                 // play the word from the beginning when we resume playback.
@@ -79,7 +79,7 @@ public class ColorsFragment extends Fragment {
         arrayList.add(new ItemInListView("chiwiiṭә", "mustard yellow", R.drawable.color_mustard_yellow, R.raw.color_mustard_yellow));
 
 
-        AdapterView adapterView = new AdapterView(getActivity(),arrayList,R.color.color_Numbers,R.color.color_image_number);
+        AdapterView adapterView = new AdapterView(getActivity(),arrayList,R.color.color_colors,R.color.color_image_color);
 
         ListView listView = (ListView) rootview.findViewById(R.id.list);
 

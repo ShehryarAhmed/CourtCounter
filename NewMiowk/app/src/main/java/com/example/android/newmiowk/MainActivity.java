@@ -1,6 +1,8 @@
 package com.example.android.newmiowk;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +14,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+
+        CategoryAdapter adapter = new CategoryAdapter(this,getSupportFragmentManager());
+
+        viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        tabLayout.setupWithViewPager(viewPager);
+
 
         //Numbers
-        TextView Colors = (TextView) findViewById(R.id.color);
+        /*TextView Colors = (TextView) findViewById(R.id.color);
 
         Colors.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+*/
     }
 
 

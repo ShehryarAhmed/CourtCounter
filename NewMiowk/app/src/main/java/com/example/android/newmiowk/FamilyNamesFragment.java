@@ -80,7 +80,7 @@ public class FamilyNamesFragment extends Fragment {
         arrayList.add(new ItemInListView("ama", "grandmother\n", R.drawable.family_grandmother, R.raw.family_grandmother));
         arrayList.add(new ItemInListView("paapa", "grandfather", R.drawable.family_grandfather, R.raw.family_grandmother));
 
-        AdapterView adapterView = new AdapterView(getActivity(),arrayList,R.color.color_Numbers,R.color.color_image_number);
+        AdapterView adapterView = new AdapterView(getActivity(),arrayList,R.color.color_family,R.color.color_image_family);
         ListView listView = (ListView) rootview.findViewById(R.id.list);
 
         listView.setAdapter(adapterView);

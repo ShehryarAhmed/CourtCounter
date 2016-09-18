@@ -16,7 +16,13 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RadioButton radioButton ;
 
+    final RadioGroup radioGroups[] = new RadioGroup[7];
+
+    final String answers[] = new String[7];
+
+    int score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         String ansarray7[] = {"onCreate()−>onStartCommand()−>onDestory()","onRecieve()"
                 ,"Service life cycle is same as activity life cycle"};
         //Correct all Answer
-        final String answers[] = {ansarray1[0],ansarray2[2],ansarray3[0],ansarray4[0],ansarray5[1],ansarray6[2],ansarray7[0]};
+         final String answers[] = {ansarray1[0],ansarray2[2],ansarray3[0],ansarray4[0],ansarray5[1],ansarray6[2],ansarray7[0]};
 
          final TextView textViewq1 = (TextView) findViewById(R.id.q1);
 
@@ -93,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
          final RadioButton radioButtonans7_2 = (RadioButton) findViewById(R.id.ans7_2);
          final RadioButton radioButtonans7_3 = (RadioButton) findViewById(R.id.ans7_3);
 
-         final RadioGroup radioGroups[] = new RadioGroup[7];
+
 
          radioGroups[0] = (RadioGroup) findViewById(R.id.ans1);
          radioGroups[1] = (RadioGroup) findViewById(R.id.ans2);
@@ -140,22 +146,29 @@ public class MainActivity extends AppCompatActivity {
          radioButtonans7_2.setText(ansarray7[1]);
          radioButtonans7_3.setText(ansarray7[2]);
 
-        Button button = (Button) findViewById(R.id.submitbutton);
         final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.ans1);
+        final Button button = (Button) findViewById(R.id.submitbutton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton radioButton =  (RadioButton) findViewById(checkedId);
-                String text = radioButton.getText().toString();
-                Toast.makeText(MainActivity.this,"dasada",Toast.LENGTH_SHORT).show();
+                button.setVisibility(View.INVISIBLE);
+                int getscore = calculation(answers);
+                Toast.makeText(MainActivity.this,""+getscore,Toast.LENGTH_SHORT).show();
             }
-    });}
         });
 
- }
+    }
+    private int calculation(String ans[]){
+        score = 0;
+        for (int i =0 ; i<radioGroups.length; i++){
+            int selectedid = radioGroups[i].getCheckedRadioButtonId();
+            radioButton = (RadioButton) findViewById(selectedid);
+            String tempdata = String.valueOf(radioButton.getText());
+            if(ans[i] == tempdata){
+                score += 10;
+            }
+        }
+return score;
+    }
+
 }

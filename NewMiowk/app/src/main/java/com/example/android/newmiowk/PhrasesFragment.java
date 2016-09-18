@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PhrasesFragmenth extends Fragment {
+public class PhrasesFragment extends Fragment {
 
     private MediaPlayer mediaPlayer;
 
@@ -57,7 +57,7 @@ public class PhrasesFragmenth extends Fragment {
         }
     };
 
-    public PhrasesFragmenth() {
+    public PhrasesFragment() {
         // Required empty public constructor
     }
 
@@ -83,7 +83,7 @@ public class PhrasesFragmenth extends Fragment {
         arrayList.add(new ItemInListView("yoowutis", "Let’s go.", R.raw.phrase_lets_go));
         arrayList.add(new ItemInListView("әnni'nem", "Come here.", R.raw.phrase_come_here));
 
-        AdapterView adapterView = new AdapterView(getActivity(),arrayList,R.color.color_Numbers,R.color.color_image_number);
+        AdapterView adapterView = new AdapterView(getActivity(),arrayList,R.color.color_pharse,R.color.color_pharse);
 
         ListView listView = (ListView) rootview.findViewById(R.id.list);
 
