@@ -156,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,""+getscore,Toast.LENGTH_SHORT).show();
             }
         });
-
     }
     private int calculation(String ans[]){
         score = 0;
