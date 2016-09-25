@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#33691E
+    </color>
+    <color name="colorPrimaryDark">#2E7D32
+    </color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="backgroundColor">#1B5E20</color>
+    <color name="Allah_Name_backgroundColor">#2E7D32
+    </color>
+</resources>

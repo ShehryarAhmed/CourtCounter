@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00695C</color>
+    <color name="colorPrimaryDark">#004D40</color>
+    <color name="lolly">#689F38</color>
+    <color name="hooly">#FB8C00</color>
+    <color name="imageboly">#E91E63</color>
+    <color name="boly">#009688</color>
+    <color name="imagelooly">#64FFDA</color>
+    <color name="imageholly">#B2DFDB</color>
+</resources>

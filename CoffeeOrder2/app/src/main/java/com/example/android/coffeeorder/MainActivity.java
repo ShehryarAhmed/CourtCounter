@@ -13,11 +13,39 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView CostTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        CostTextView = (TextView) findViewById(R.id.CostTextView);
+        final CheckBox checkboxForWhippedCream = (CheckBox) findViewById(R.id.checkboxForWhippedCream);
+        final CheckBox checkboxForChocolate = (CheckBox) findViewById(R.id.checkboxForChocolate);
+        checkboxForWhippedCream.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkboxForWhippedCream.isChecked()){
+                CostTextView.setText("$" + price()+".00");
+            }
+                else{
+                    CostTextView.setText("s" + price()+".00");
+                }
+            }
+        });
+        checkboxForChocolate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkboxForChocolate.isChecked()){
+
+                    CostTextView.setText("$" + price()+".00");
+                }
+                else{
+                    CostTextView.setText("$" + price()+".00");
+                }
+            }
+        });
     }
 
     int CoffeePerCup = 5;
@@ -30,16 +58,15 @@ public class MainActivity extends AppCompatActivity {
     boolean Chocolate;
 
     public void AddCoffeecup(View view){
+        CostTextView = (TextView) findViewById(R.id.CostTextView);
         ++Quantity;
         TextView textView = (TextView) findViewById(R.id.QuantityTextView);
         if(Quantity<10){
             textView.setText("0" + Quantity);
-            TextView CostTextView = (TextView) findViewById(R.id.CostTextView);
             CostTextView.setText("$" + price()+".00");
         }
         else{
         textView.setText(""+Quantity);
-        TextView CostTextView = (TextView) findViewById(R.id.CostTextView);
         CostTextView.setText("$"+price()+".00");
     }}
     public void DeleteCoffeecup(View view) {
@@ -50,11 +77,11 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.QuantityTextView);
         if(Quantity<10){
         textView.setText("0" + Quantity);
-        TextView CostTextView = (TextView) findViewById(R.id.CostTextView);
+        CostTextView = (TextView) findViewById(R.id.CostTextView);
         CostTextView.setText("$" + price()+".00");
-    }else{
+    }
+        else{
         textView.setText("" + Quantity);
-        TextView CostTextView = (TextView) findViewById(R.id.CostTextView);
         CostTextView.setText("$" + price()+".00");
     }}
     private void setTopping(String message){

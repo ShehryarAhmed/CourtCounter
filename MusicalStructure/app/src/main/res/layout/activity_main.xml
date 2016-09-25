@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="20dp"
+    android:background="@drawable/mic"
+
+
+    tools:context="com.example.android.musicalstructure.MainActivity">
+
+    <TextView
+        android:id="@+id/textview1"
+        style="@style/Text_view_style"
+        android:background="@color/lolly"
+        android:text="LollyWood!"
+        />
+    <TextView
+        android:id="@+id/textview2"
+        style="@style/Text_view_style"
+        android:background="@color/boly"
+        android:text="BollyWood!" />
+    <TextView
+        android:id="@+id/textview3"
+        style="@style/Text_view_style"
+        android:background="@color/hooly"
+        android:text="HollyWood!" />
+
+</LinearLayout>
