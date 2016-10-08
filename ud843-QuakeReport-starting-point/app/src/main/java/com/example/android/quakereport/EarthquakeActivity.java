@@ -15,8 +15,11 @@
  */
 package com.example.android.quakereport;
 
+import android.app.LoaderManager;
 import android.content.Intent;
 import android.net.Uri;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Loader;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,11 +27,32 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class EarthquakeActivity extends AppCompatActivity {
+public class EarthquakeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<customclass>> {
+
+    private static final int EARTHQUAKE_LOADER_ID = 1;
+
+    @Override
+    public Loader<List<customclass>> onCreateLoader(int id, Bundle args) {
+        return new EarthQakeLoader(this,QueryUtils.SAMPLE_JSON_RESPONSE);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<customclass>> loader, List<customclass> data) {
+        madapter.clear();
+        if(madapter != null && data.isEmpty()){
+            madapter.addAll(data);
+        }
+
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<customclass>> loader) {
+     madapter.clear();
+    }
 
     private customadapter madapter;
 
@@ -36,8 +60,12 @@ public class EarthquakeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
+
+
+
 
         // Create a fake list of earthquake locations.
 
@@ -70,8 +98,16 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         });
 
+/*
         EarthQuakeAsync task = new EarthQuakeAsync();
         task.execute(QueryUtils.SAMPLE_JSON_RESPONSE);
+*/
+
+        LoaderManager loaderManager =  getLoaderManager();
+
+        loaderManager.initLoader(EARTHQUAKE_LOADER_ID, null, this);
+
+
     }
     private class EarthQuakeAsync extends AsyncTask<String,Void, List<customclass>>{
         @Override
