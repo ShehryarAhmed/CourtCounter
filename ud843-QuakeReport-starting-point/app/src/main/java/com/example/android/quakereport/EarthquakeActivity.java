@@ -16,7 +16,10 @@
 package com.example.android.quakereport;
 
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
@@ -49,12 +52,14 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     @Override
     public void onLoadFinished(Loader<List<customclass>> loader, List<customclass> data) {
         Log.e(LOG_TAG,"OnLoaderFinished");
-
+        mEmptyStateTextView.setText("NO EARTHQUAKE");
+        View loadingIndicator = findViewById(R.id.loading_indicator);
+        loadingIndicator.setVisibility(View.GONE);
         madapter.clear();
         if(data != null && !data.isEmpty()){
             madapter.addAll(data);
         }
-        mEmptyStateTextView.setText("NO EARTHQUAKE");
+
 
     }
 
@@ -115,10 +120,22 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         EarthQuakeAsync task = new EarthQuakeAsync();
         task.execute(QueryUtils.SAMPLE_JSON_RESPONSE);
 */
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        LoaderManager loaderManager =  getLoaderManager();
-        Log.e(LOG_TAG,"OnInitLoader");
-        loaderManager.initLoader(EARTHQUAKE_LOADER_ID, null, this);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if(networkInfo != null && networkInfo.isConnected()){
+            LoaderManager loaderManager =  getLoaderManager();
+            Log.e(LOG_TAG,"OnInitLoader");
+            loaderManager.initLoader(EARTHQUAKE_LOADER_ID, null, this);
+
+        }
+else {
+         View loadingIndicator = findViewById(R.id.loading_indicator);
+            loadingIndicator.setVisibility(View.GONE);
+
+            mEmptyStateTextView.setText("no_internet_connection");
+        }
 
 
     }
