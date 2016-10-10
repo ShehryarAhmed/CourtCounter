@@ -23,35 +23,45 @@ import android.content.Loader;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class EarthquakeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<customclass>> {
 
+
+    private TextView mEmptyStateTextView;
+
     private static final int EARTHQUAKE_LOADER_ID = 1;
 
     @Override
     public Loader<List<customclass>> onCreateLoader(int id, Bundle args) {
+        Log.e(LOG_TAG,"OncreateLoader");
         return new EarthQakeLoader(this,QueryUtils.SAMPLE_JSON_RESPONSE);
     }
 
     @Override
     public void onLoadFinished(Loader<List<customclass>> loader, List<customclass> data) {
+        Log.e(LOG_TAG,"OnLoaderFinished");
+
         madapter.clear();
-        if(madapter != null && data.isEmpty()){
+        if(data != null && !data.isEmpty()){
             madapter.addAll(data);
         }
-
+        mEmptyStateTextView.setText("NO EARTHQUAKE");
 
     }
 
     @Override
     public void onLoaderReset(Loader<List<customclass>> loader) {
-     madapter.clear();
+        Log.e(LOG_TAG,"OnLoaderReset");
+        madapter.clear();
     }
 
     private customadapter madapter;
@@ -60,9 +70,11 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Log.e(LOG_TAG,"Oncreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
+        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+
 
 
 
@@ -86,6 +98,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
+        earthquakeListView.setEmptyView(mEmptyStateTextView);
         earthquakeListView.setAdapter(madapter);
 
         earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -104,12 +117,12 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 */
 
         LoaderManager loaderManager =  getLoaderManager();
-
+        Log.e(LOG_TAG,"OnInitLoader");
         loaderManager.initLoader(EARTHQUAKE_LOADER_ID, null, this);
 
 
     }
-    private class EarthQuakeAsync extends AsyncTask<String,Void, List<customclass>>{
+    /*private class EarthQuakeAsync extends AsyncTask<String,Void, List<customclass>>{
         @Override
         protected List<customclass> doInBackground(String... urls) {
             // Don't perform the request if there are no URLs, or the first URL is null
@@ -131,7 +144,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
                  madapter.addAll(data);
             }
         }
-        }
+        }*/
     }
 
 

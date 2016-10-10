@@ -2,6 +2,7 @@ package com.example.android.quakereport;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.util.Log;
 
 import java.util.List;
 
@@ -11,6 +12,8 @@ import java.util.List;
 public class EarthQakeLoader extends AsyncTaskLoader<List<customclass>>
 
 {
+    private static final String LOG_TAG = EarthQakeLoader.class.getName();
+
     private String murl;
     public EarthQakeLoader(Context context,String url){
         super(context);
@@ -18,12 +21,14 @@ public class EarthQakeLoader extends AsyncTaskLoader<List<customclass>>
     }
     @Override
     protected void onStartLoading() {
+        Log.e(LOG_TAG,"OnStartLoader");
            forceLoad();
 
     }
 
     @Override
     public List<customclass> loadInBackground() {
+        Log.e(LOG_TAG,"LoadInBackGround");
 
         if(murl == null){
             return null;
