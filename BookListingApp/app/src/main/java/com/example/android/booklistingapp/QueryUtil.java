@@ -26,9 +26,9 @@ import java.util.List;
 public class QueryUtil {
 
     private static final String LOG_TAG = QueryUtil.class.getSimpleName();
-    private final String Request_url = "https://www.googleapis.com/books/v1/volumes?q=";
+    public static final String Request_url = "https://www.googleapis.com/books/v1/volumes?q=Gladwell";
 
-    public static List<Detail> ExtractFeatureFromJson(String json) {
+    public static ArrayList<Detail> ExtractFeatureFromJson(String json) {
         if (TextUtils.isEmpty(json)) {
             return null;
         }
