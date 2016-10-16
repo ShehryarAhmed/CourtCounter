@@ -26,7 +26,7 @@ import java.util.List;
 public class QueryUtil {
 
     private static final String LOG_TAG = QueryUtil.class.getSimpleName();
-    public static final String Request_url = "https://www.googleapis.com/books/v1/volumes?q=Gladwell";
+    public static final String Request_url = "https://www.googleapis.com/books/v1/volumes?q=c&key=AIzaSyD1XEZaVzDVLpFOLL5vsGbHEQGH32klEhg";
 
     public static ArrayList<Detail> ExtractFeatureFromJson(String json) {
         if (TextUtils.isEmpty(json)) {
@@ -34,8 +34,8 @@ public class QueryUtil {
         }
         ArrayList<Detail> list = new ArrayList<>();
         try{
-            JSONObject jsonObject = new JSONObject(json);
-            JSONArray jsonArray = jsonObject.getJSONArray("items");
+            JSONObject basejsonobject = new JSONObject(json);
+            JSONArray jsonArray = basejsonobject.getJSONArray("items");
             if(jsonArray.length()>0){
                 for(int i = 0; i < jsonArray.length(); i++){
                     JSONObject itemjsonobject = jsonArray.getJSONObject(i);
@@ -51,7 +51,6 @@ public class QueryUtil {
                             author.append(jsonAuthorArray.getString(j));
                             }
                         list.add(new Detail(title,author.toString()));
-                        return list;
                     }
                 }
             }
@@ -88,42 +87,47 @@ public class QueryUtil {
         }
         return url;
     }
+    public String makeHttpRequest(URL url) throws IOException {
+        String jsonResponse = "";
 
-    public String makeHttpRequest(URL url) throws IOException{
-        String JSONRespone = "";
-        if (url == null){
-            return JSONRespone;
+        if (url == null) {
+            return jsonResponse;
         }
-        HttpURLConnection httpURLConnection = null;
+
+        HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
-        try{
-            httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setReadTimeout(10000);
-            httpURLConnection.setConnectTimeout(15000);
-            httpURLConnection.connect();
-            if(httpURLConnection.getResponseCode()==200){
-                inputStream = httpURLConnection.getInputStream();
-                JSONRespone = readFromStream(inputStream);
+        try {
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setReadTimeout(10000 /* milliseconds */);
+            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.connect();
+
+            if (urlConnection.getResponseCode() == 200) {
+                Log.e(LOG_TAG, "Response Code: " + urlConnection.getResponseCode());
+                inputStream = urlConnection.getInputStream();
+                jsonResponse = readFromStream(inputStream);
+            } else {
+                Log.e(LOG_TAG, "Error Response Code: " + urlConnection.getResponseCode()
+                        + " " + url.toString());
             }
-            else {
-                Log.e(LOG_TAG,"Error Respond code "+httpURLConnection.getResponseCode());
+
+        } catch (IOException e) {
+            if (urlConnection.getResponseCode() != 200) {
+                Log.e(LOG_TAG, "Error Retrieving Earthquake JSON results", e);
             }
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
             }
-        catch (IOException e){
-            Log.e(LOG_TAG,"During Retrieving Problem"+e);
-                    }
-        finally {
-            if (httpURLConnection != null){
-                httpURLConnection.disconnect();
-            }
-            if(inputStream!=null){
+            if (inputStream != null) {
                 inputStream.close();
             }
-
         }
-        return JSONRespone;
 
-            }
-
+        return jsonResponse;
+    }
 }
+
+
+
