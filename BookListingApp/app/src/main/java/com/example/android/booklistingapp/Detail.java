@@ -4,19 +4,41 @@ package com.example.android.booklistingapp;
  * Created by android on 10/12/2016.
  */
 public class Detail {
-    private String Title;
-    private String Author;
+    private String mTitle;
+    private String mAuthor;
+    private double mRattingBar;
+    private String mCategory;
+    private int mpicture;
 
-    public Detail(String title, String author) {
-        this.Title = title;
-        this.Author = author;
+
+    public Detail(String title, String author, double rattingBar,String category,int picture) {
+        this.mTitle = title;
+        this.mAuthor = author;
+        this.mRattingBar = rattingBar;
+        this.mCategory = category;
+        this.mpicture = picture;
+
     }
 
-    public String getTitle() {
-        return Title;
+
+    public String getmTitle() {
+        return mTitle;
     }
 
-    public String getAuthor() {
-        return Author;
+    public String getmAuthor() {
+        return mAuthor;
     }
+
+    public double getmRattingBar() {
+        return mRattingBar;
+    }
+
+    public String getmCategory() {
+        return mCategory;
+    }
+
+    public int getMpicture() {
+        return mpicture;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.android.booklistingapp;
 
+import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 public class QueryUtil {
 
+
     private static final String LOG_TAG = QueryUtil.class.getSimpleName();
     public static final String Request_url = "https://www.googleapis.com/books/v1/volumes?q=c&key=AIzaSyD1XEZaVzDVLpFOLL5vsGbHEQGH32klEhg";
 
@@ -38,20 +40,45 @@ public class QueryUtil {
             JSONArray jsonArray = basejsonobject.getJSONArray("items");
             if(jsonArray.length()>0){
                 for(int i = 0; i < jsonArray.length(); i++){
+                    String author = "Author: ";
+                    String title = "";
+                    String category = "";
+                    String publisher = "Publisher: ";
+                    double ratingBar;
                     JSONObject itemjsonobject = jsonArray.getJSONObject(i);
-                    JSONObject VoulmeInfo = itemjsonobject.getJSONObject("volumeinfo");
-                    String title = VoulmeInfo.getString("title");
-                    StringBuilder author = new StringBuilder();
+                    JSONObject VoulmeInfo = itemjsonobject.getJSONObject("volumeInfo");
+                     title = VoulmeInfo.getString("title");
+                    StringBuilder authorstringbulider = new StringBuilder();
                     if(VoulmeInfo.has("authors")){
                         JSONArray jsonAuthorArray = VoulmeInfo.getJSONArray("authors");
                         for (int j = 0; j< jsonAuthorArray.length(); j++){
                             if(j>0){
-                                author.append(", ");
+                                authorstringbulider.append(", ");
                             }
-                            author.append(jsonAuthorArray.getString(j));
+                            author = authorstringbulider.append(jsonAuthorArray.getString(j)).toString();
                             }
-                        list.add(new Detail(title,author.toString()));
+
                     }
+                    if (VoulmeInfo.isNull("averageRating")) {
+                        // Default unrated value? Hmm...
+                        ratingBar = 5;
+                    } else {
+                        ratingBar = VoulmeInfo.getDouble("averageRating");
+                    }
+                    JSONArray categories = VoulmeInfo.getJSONArray("categories");
+
+                    if (categories.length() > 0) {
+                        for (int j = 0; j < categories.length(); j++) {
+                            category += categories.optString(j) + " ";
+                        }
+                    }
+
+                    JSONObject bookPictures = VoulmeInfo.getJSONObject("imageLinks");
+
+                    String picture = bookPictures.getString("thumbnail");
+
+
+                    list.add(new Detail(title,author,ratingBar,category,R.drawable.hrysanthemum));
                 }
             }
          }
@@ -61,6 +88,18 @@ public class QueryUtil {
         return list;
     }
 
+    /*private Bitmap downloadImage(String thumbnail){
+        Bitmap bitmap = null;
+        IOException in = null;
+
+        try {
+            URL url = createUrl(thumbnail);
+            in = makeHttpRequest(url);
+        }
+        catch (IOException e){
+            e.printStackTrace(e);
+        }
+    }*/
 
     private String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
@@ -112,7 +151,7 @@ public class QueryUtil {
                         + " " + url.toString());
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             if (urlConnection.getResponseCode() != 200) {
                 Log.e(LOG_TAG, "Error Retrieving Earthquake JSON results", e);
             }

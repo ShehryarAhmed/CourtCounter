@@ -2,10 +2,13 @@ package com.example.android.booklistingapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -26,13 +29,30 @@ public class CustomAdapter extends ArrayAdapter<Detail>{
         }
         Detail detail = getItem(position);
 
+        ImageView imageView = (ImageView) rootview.findViewById(R.id.image);
+
+        imageView.setImageResource(detail.getMpicture());
+
+        imageView.setVisibility(View.VISIBLE);
+
         TextView titleview = (TextView) rootview.findViewById(R.id.title);
+
+        titleview.setText(detail.getmTitle());
 
         TextView authorview = (TextView) rootview.findViewById(R.id.authore);
 
-        titleview.setText(detail.getTitle());
+        authorview.setText(detail.getmAuthor());
 
-        authorview.setText(detail.getAuthor());
+        RatingBar rating = (RatingBar) rootview.findViewById(R.id.ratingbar);
+
+        rating.setRating((float) detail.getmRattingBar());
+
+        TextView category = (TextView) rootview.findViewById(R.id.category);
+
+        category.setText(detail.getmCategory());
+
+
+
 
         return rootview;
 
