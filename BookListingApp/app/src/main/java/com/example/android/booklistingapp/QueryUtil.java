@@ -28,7 +28,9 @@ public class QueryUtil {
 
 
     private static final String LOG_TAG = QueryUtil.class.getSimpleName();
-    public static final String Request_url = "https://www.googleapis.com/books/v1/volumes?q=c&key=AIzaSyD1XEZaVzDVLpFOLL5vsGbHEQGH32klEhg";
+    public static final String API_KEY = "&key=AIzaSyD1XEZaVzDVLpFOLL5vsGbHEQGH32klEhg";
+    public static final String Request_url_bydefault = "https://www.googleapis.com/books/v1/volumes?q=c&key=AIzaSyD1XEZaVzDVLpFOLL5vsGbHEQGH32klEhg";
+    public static final String Request_url = "https://www.googleapis.com/books/v1/volumes?q=";
 
     public static ArrayList<Detail> ExtractFeatureFromJson(String json) {
         if (TextUtils.isEmpty(json)) {

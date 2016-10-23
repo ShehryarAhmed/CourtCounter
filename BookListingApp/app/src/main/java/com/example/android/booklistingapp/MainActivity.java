@@ -7,6 +7,9 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    String completeUrl;
     CustomAdapter customAdapter;
     ArrayList<Detail> tempBooklist = null;
 
@@ -25,12 +29,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        final EditText editText = (EditText) findViewById(R.id.serach_query);
+
+
+
+        Button button = (Button) findViewById(R.id.serach_button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String getTextFromEdittext = editText.getText().toString();
+
+                completeUrl = QueryUtil.Request_url.toString();
+                completeUrl += getTextFromEdittext + QueryUtil.API_KEY;
+                editText.setText("");
+
+                BookAsyncTask bookAsyncTask = new BookAsyncTask();
+
+                bookAsyncTask.execute();
+
+            }
+        });
         ArrayList<Detail> list = new ArrayList<>();
    /*     list.add(new Detail("Java","Asher&Shehryar"));
         list.add(new Detail("P.O.M","Asher"));
         list.add(new Detail("C++","Shehryar"));*/
-        BookAsyncTask bookAsyncTask = new BookAsyncTask();
-        bookAsyncTask.execute();
+
         /*if (isOnline(getApplication())){
 
         }
@@ -62,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
         protected ArrayList<Detail> doInBackground(URL... urls) {
             URL url = null ;
 
-            url = queryUtil.createUrl(QueryUtil.Request_url);
+
+            url = queryUtil.createUrl(completeUrl);
 
             String jsonResponse = "";
             try{
