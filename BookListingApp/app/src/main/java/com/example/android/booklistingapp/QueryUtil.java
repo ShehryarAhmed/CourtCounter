@@ -1,6 +1,7 @@
 package com.example.android.booklistingapp;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ListView;
@@ -33,6 +34,7 @@ public class QueryUtil {
     public static final String Request_url = "https://www.googleapis.com/books/v1/volumes?q=";
 
     public static ArrayList<Detail> ExtractFeatureFromJson(String json) {
+
         if (TextUtils.isEmpty(json)) {
             return null;
         }
@@ -45,7 +47,6 @@ public class QueryUtil {
                     String author = "Author: ";
                     String title = "";
                     String category = "";
-                    String publisher = "Publisher: ";
                     double ratingBar;
                     JSONObject itemjsonobject = jsonArray.getJSONObject(i);
                     JSONObject VoulmeInfo = itemjsonobject.getJSONObject("volumeInfo");
@@ -79,8 +80,9 @@ public class QueryUtil {
 
                     String picture = bookPictures.getString("thumbnail");
 
+                    URL url = null;
 
-                    list.add(new Detail(title,author,ratingBar,category,R.drawable.hrysanthemum));
+                    list.add(new Detail(title,author,ratingBar,category,picture));
                 }
             }
          }

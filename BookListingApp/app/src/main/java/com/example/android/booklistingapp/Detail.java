@@ -8,10 +8,10 @@ public class Detail {
     private String mAuthor;
     private double mRattingBar;
     private String mCategory;
-    private int mpicture;
+    private String mpicture;
 
 
-    public Detail(String title, String author, double rattingBar,String category,int picture) {
+    public Detail(String title, String author, double rattingBar,String category,String picture) {
         this.mTitle = title;
         this.mAuthor = author;
         this.mRattingBar = rattingBar;
@@ -37,7 +37,7 @@ public class Detail {
         return mCategory;
     }
 
-    public int getMpicture() {
+    public String getMpicture() {
         return mpicture;
     }
 

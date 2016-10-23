@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,13 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Button button = (Button) findViewById(R.id.serach_button);
+        ImageView imageview = (ImageView) findViewById(R.id.serach_button);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String getTextFromEdittext = editText.getText().toString();
-
+                if(getTextFromEdittext.isEmpty()){
+                    Toast.makeText(MainActivity.this,"Please search books",Toast.LENGTH_SHORT).show();
+                }
+                else {
                 completeUrl = QueryUtil.Request_url.toString();
                 completeUrl += getTextFromEdittext + QueryUtil.API_KEY;
                 editText.setText("");
@@ -49,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
                 bookAsyncTask.execute();
 
-            }
+            }}
         });
         ArrayList<Detail> list = new ArrayList<>();
    /*     list.add(new Detail("Java","Asher&Shehryar"));
