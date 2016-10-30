@@ -8,7 +8,10 @@ import android.support.v7.view.menu.MenuAdapter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class Catalog extends AppCompatActivity {
 
@@ -18,6 +21,7 @@ public class Catalog extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FloatingActionButton fb = (FloatingActionButton) findViewById(R.id.fab);
+
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,6 +30,14 @@ public class Catalog extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ArrayList<Pets> arrayList = new ArrayList<>();
+        arrayList.add(new Pets());
+        ListView listView = (ListView) findViewById(R.id.list);
+
+        PetAdapter petAdapter = new PetAdapter(this,arrayList);
+
+        listView.setAdapter(petAdapter);
     }
 
     @Override
