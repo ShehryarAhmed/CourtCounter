@@ -25,8 +25,6 @@ import com.example.android.petapp.DataBase.PetDBhelper;
  */
 public class EditActivity extends AppCompatActivity{
 
-    private Pets pets;
-
     private EditText mpet_name ;
 
     private EditText mpet_breed ;
@@ -35,8 +33,9 @@ public class EditActivity extends AppCompatActivity{
 
     private Spinner mpet_gender_Spinner ;
 
-    private int mgender ;
+    private int mgender;
 
+    private Pets pets =  new Pets();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +52,14 @@ public class EditActivity extends AppCompatActivity{
     }
 
     private void insertpet(){
-        pets.setPet_name(mpet_name.getText().toString().trim());
-
-        pets.setPet_breed(mpet_breed.getText().toString().trim());
-
+        String nameString = mpet_name.getText().toString().trim();
+       pets.setPet_name(nameString);
+        String breedString = mpet_breed.getText().toString().trim();
+        pets.setPet_breed(breedString);
         String weightString = mpet_weight.getText().toString().trim();
-
-        pets.setPet_Weight(Integer.parseInt(weightString));
+        int weight = Integer.parseInt(weightString);
+        pets.setPet_Weight(weight);
+        pets.setGender(mgender);
 
         PetDBhelper mpetDBhelper = new PetDBhelper(this);
 
@@ -67,13 +67,13 @@ public class EditActivity extends AppCompatActivity{
 
         ContentValues values = new ContentValues();
 
-        values.put(PetContract.PetEntry.COLUMN_PET_NAME,pets.getPet_name());
+        values.put(PetContract.PetEntry.COLUMN_PET_NAME,nameString);
 
-        values.put(PetContract.PetEntry.COLUMN_PET_BREED,pets.getPet_breed());
+        values.put(PetContract.PetEntry.COLUMN_PET_BREED,breedString);
 
-        values.put(PetContract.PetEntry.COLUMN_PET_GENDER,pets.getGender());
+        values.put(PetContract.PetEntry.COLUMN_PET_GENDER,mgender);
 
-        values.put(PetContract.PetEntry.COLUMN_PET_WEIGHT,pets.getPet_Weight());
+        values.put(PetContract.PetEntry.COLUMN_PET_WEIGHT,weight);
 
         long newRowId = db.insert(PetContract.PetEntry.TABLE_NAME, null, values);
 
@@ -119,8 +119,6 @@ public class EditActivity extends AppCompatActivity{
                 mgender = PetContract.PetEntry.GENDER_UNKNOWN;
             }
         });
-        pets.setGender(mgender);
-
     }
 
 

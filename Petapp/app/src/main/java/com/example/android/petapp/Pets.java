@@ -9,7 +9,15 @@ public class Pets {
     private int Pet_Weight;
     private int gender;
 
+    public Pets(String pet_name, String pet_breed, int pet_Weight, int gender) {
+        Pet_name = pet_name;
+        Pet_breed = pet_breed;
+        Pet_Weight = pet_Weight;
+        this.gender = gender;
+    }
+
     public Pets() {
+
     }
 
     public void setPet_name(String pet_name) {
