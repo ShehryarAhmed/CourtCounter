@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Petapp</string>
+    <string name="Action_dummy_data">Insert Dummy Data</string>
+    <string name="Delete_All_data">Delet All Data</string>
+
+    <!-- Label for dropdown menu option if the pet is unknown [CHAR LIMIT=20] -->
+    <string name="gender_unknown">Unknown</string>
+
+    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <string name="gender_male">Male</string>
+
+    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <string name="gender_female">Female</string>
+</resources>
