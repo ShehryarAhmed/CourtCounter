@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuAdapter;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,8 +69,9 @@ public class Catalog extends AppCompatActivity {
                     PetContract.PetEntry._ID,
                     PetContract.PetEntry.COLUMN_PET_NAME,
                     PetContract.PetEntry.COLUMN_PET_BREED,
+                    PetContract.PetEntry.COLUMN_PET_WEIGHT,
                     PetContract.PetEntry.COLUMN_PET_GENDER,
-                    PetContract.PetEntry.COLUMN_PET_WEIGHT};
+            };
 
             // Perform a query on the pets table
             Cursor cursor = db.query(

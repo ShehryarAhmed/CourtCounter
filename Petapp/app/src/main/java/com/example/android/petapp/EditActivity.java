@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,6 +53,7 @@ public class EditActivity extends AppCompatActivity{
     }
 
     private void insertpet(){
+
         String nameString = mpet_name.getText().toString().trim();
        pets.setPet_name(nameString);
         String breedString = mpet_breed.getText().toString().trim();
@@ -59,7 +61,7 @@ public class EditActivity extends AppCompatActivity{
         String weightString = mpet_weight.getText().toString().trim();
         int weight = Integer.parseInt(weightString);
         pets.setPet_Weight(weight);
-        pets.setGender(mgender);
+
 
         PetDBhelper mpetDBhelper = new PetDBhelper(this);
 
@@ -75,6 +77,8 @@ public class EditActivity extends AppCompatActivity{
 
         values.put(PetContract.PetEntry.COLUMN_PET_WEIGHT,weight);
 
+
+
         long newRowId = db.insert(PetContract.PetEntry.TABLE_NAME, null, values);
 
         if(newRowId != -1){
@@ -83,10 +87,6 @@ public class EditActivity extends AppCompatActivity{
         else {
             Toast.makeText(this, "Error for saving pet", Toast.LENGTH_SHORT).show();
         }
-
-
-
-
 
     }
 
@@ -102,17 +102,26 @@ public class EditActivity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String selction = (String) adapterView.getItemAtPosition(position);
-                if(!TextUtils.isEmpty(selction)){
-                    if(selction.equals(R.string.gender_male)){
+                Log.e("selection"," Selection :"+selction);
+              /*  if(!TextUtils.isEmpty(selction)){*/
+
+                Log.e("selection"," Selection :"+R.string.gender_male);
+
+                    if(selction.equals(getString(R.string.gender_male))){
+
+
                         mgender = PetContract.PetEntry.GENDER_MALE;
                     }
-                    else if(selction.equals(R.string.gender_female)){
+                    else if(selction.equals(getString(R.string.gender_female))){
                         mgender = PetContract.PetEntry.GENDER_FEMALE;
                     }
                     else {
                         mgender = PetContract.PetEntry.GENDER_UNKNOWN;
                     }
-                }
+                    pets.setPetGender(mgender);
+             /*   }
+             */
+                Log.e("selection"," Selection :"+mgender);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {

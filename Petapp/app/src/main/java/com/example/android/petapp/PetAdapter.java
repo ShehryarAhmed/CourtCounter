@@ -40,11 +40,11 @@ public class PetAdapter extends ArrayAdapter<Pets> {
 
         TextView pet_gender = (TextView) view.findViewById(R.id.gender);
 
-        pet_gender.setText(""+pets.getGender());
+        pet_gender.setText(""+pets.getPetGender());
 
         TextView pet_wieght = (TextView) view.findViewById(R.id.wieght);
 
-        pet_wieght.setText(""+pet_wieght);
+        pet_wieght.setText(""+pets.getPet_Weight());
 
         return view;
     }

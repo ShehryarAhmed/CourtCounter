@@ -9,11 +9,11 @@ public class Pets {
     private int Pet_Weight;
     private int gender;
 
-    public Pets(String pet_name, String pet_breed, int pet_Weight, int gender) {
-        Pet_name = pet_name;
-        Pet_breed = pet_breed;
-        Pet_Weight = pet_Weight;
+    public Pets(String pet_name, String pet_breed, int gender, int pet_Weight) {
+        this.Pet_name = pet_name;
+        this.Pet_breed = pet_breed;
         this.gender = gender;
+        this.Pet_Weight = pet_Weight;
     }
 
     public Pets() {
@@ -32,7 +32,7 @@ public class Pets {
         Pet_Weight = pet_Weight;
     }
 
-    public void setGender(int gender) {
+    public void setPetGender(int gender) {
         this.gender = gender;
     }
 
@@ -48,7 +48,7 @@ public class Pets {
         return Pet_Weight;
     }
 
-    public int getGender() {
+    public int getPetGender() {
         return gender;
     }
 }
