@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Sqlite</string>
+    <string name="discard">Discard</string>
+    <string name="sale">Sale</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="show_item_Add_history">ItemAddHistory</string>
+    <string name="show_sale_history">SaleHistory</string>
+    <string name="delete_dialog_msg">Delete this pet?</string>
+
+</resources>

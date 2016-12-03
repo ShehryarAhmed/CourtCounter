@@ -85,8 +85,10 @@ public class Catalog extends AppCompatActivity {
         super.onStart();
 
         PetAdapter petAdapter = new PetAdapter(this, displayDatabaseInfo());
-
         listView.setAdapter(petAdapter);
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
 
     }
 
