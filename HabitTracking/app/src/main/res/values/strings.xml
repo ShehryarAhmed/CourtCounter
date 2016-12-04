@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HabitTracking</string>
+    <string name="Add_New_habit">Add habit</string>
+    <string name="Delete_All_habit">Delete All</string>
+</resources>
